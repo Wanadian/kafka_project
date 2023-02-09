@@ -1,0 +1,6 @@
+fr/insa/api/models/CountryStatistics.class
+fr/insa/api/repositories/CovidRepository.class
+fr/insa/api/services/CovidService.class
+fr/insa/api/ApiApplication.class
+fr/insa/api/controllers/CovidController.class
+fr/insa/api/utils/Commands.class
