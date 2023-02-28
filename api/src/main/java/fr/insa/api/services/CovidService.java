@@ -2,14 +2,20 @@ package fr.insa.api.services;
 
 import fr.insa.api.repositories.CovidRepository;
 import fr.insa.api.utils.Commands;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CovidService {
-    @Autowired
-    CovidRepository covidRepository;
-    
+    private CovidRepository covidRepository;
+
+    public CovidService() {
+        super();
+    }
+
+    public CovidService(CovidRepository covidRepository) {
+        this.covidRepository = covidRepository;
+    }
+
     public String getCommands(){
         return new Commands().getCommands();
     }

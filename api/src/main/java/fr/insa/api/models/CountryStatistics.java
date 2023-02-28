@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class CountryStatistics {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String name;
     private long confirmed;
     private long dead;

@@ -1,7 +1,6 @@
 package fr.insa.api.controllers;
 
 import fr.insa.api.services.CovidService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/covid")
 public class CovidController {
-    @Autowired
     private CovidService covidService;
+
+    public CovidController() {
+       super();
+    }
+
+    public CovidController(CovidService covidService) {
+        this.covidService = covidService;
+    }
 
     @GetMapping("/")
     public long getGlobalValues() {
