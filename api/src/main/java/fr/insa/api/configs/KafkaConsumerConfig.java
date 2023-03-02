@@ -48,32 +48,11 @@ public class KafkaConsumerConfig {
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, Summary>
-    requestKafkaListenerFactory() {
+    responseKafkaListenerFactory() {
 
         ConcurrentKafkaListenerContainerFactory<String, Summary> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(requestConsumerFactory());
         return factory;
     }
-/*
-    // ReplyingKafkaTemplate
-    @Bean
-    public ReplyingKafkaTemplate<String, Model, Model> replyKafkaTemplate(ProducerFactory<String, Model> pf, KafkaMessageListenerContainer<String, Model> container) {
-        return new ReplyingKafkaTemplate<>(pf, container);
-    }
-
-    // Listener Container to be set up in ReplyingKafkaTemplate
-    @Bean
-    public KafkaMessageListenerContainer<String, Model> replyContainer(ConsumerFactory<String, Model> cf) {
-        ContainerProperties containerProperties = new ContainerProperties(requestReplyTopic);
-        return new KafkaMessageListenerContainer<>(cf, containerProperties);
-    }
-
-    // Default Producer Factory to be used in ReplyingKafkaTemplate
-    @Bean
-    public ProducerFactory<String,Model> producerFactory() {
-        return new DefaultKafkaProducerFactory<>(producerConfigs());
-    }
-
-*/
 }

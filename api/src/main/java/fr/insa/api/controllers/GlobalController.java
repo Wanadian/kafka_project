@@ -12,9 +12,6 @@ public class GlobalController {
 
     private GlobalService globalService;
 
-    @Value("${spring.kafka.consumer.topic-name}")
-    private String topic;
-
     public GlobalController() {
         super();
     }
@@ -27,27 +24,27 @@ public class GlobalController {
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
     public long getGlobalValues() {
-        return globalService.getGlobalValues();
+        return 0/*globalService.getGlobalValues()*/;
     }
 
     @GetMapping(value = "/confirmed", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
     public long getConfirmedAverage() {
-        return globalService.getGlobalAverageConfirmed();
+        return 0/*;globalService.getGlobalAverageConfirmed()*/;
     }
 
     @GetMapping(value = "/dead", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
     public long getDeathsAverage() {
-        return globalService.getGlobalAverageDead();
+        return 0/*globalService.getGlobalAverageDead()*/;
     }
 
     @GetMapping(value = "/lethality", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
     public long getCountriesDeathsPercent() {
-        return globalService.getGlobalLethality();
+        return 0/*globalService.getGlobalLethality()*/;
     }
 }

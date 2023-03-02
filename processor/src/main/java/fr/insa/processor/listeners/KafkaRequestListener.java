@@ -27,9 +27,10 @@ public class KafkaRequestListener {
             groupId = "processor",
             containerFactory = "requestKafkaListenerFactory"
     )
-    public void listener(Summary summary){
+    public void listener(String message){
         logger.info("[Kafka Listener] a message was received from KafKa request Topic");
         System.out.println("message received");
+        Summary summary = new Summary();
         summary.setGlobal(globalRepository.findFirstByOrderByDateDesc());
         summary.setCountries(countryRepository.findAll());
         kafkaResponseProducer.sendMessage(summary, "response");

@@ -1,20 +1,19 @@
 package fr.insa.api.services;
 
-import fr.insa.api.listeners.KafkaResponseListener;
-import fr.insa.api.models.Country;
+import fr.insa.api.events.SummaryConsumerEvent;
 import fr.insa.api.models.Summary;
 import fr.insa.api.producers.KafkaRequestProducer;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.header.internals.RecordHeader;
+import org.springframework.context.event.EventListener;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.requestreply.RequestReplyFuture;
-import org.springframework.kafka.support.KafkaHeaders;
-import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.CountDownLatch;
 
 @Service
 public class CountryService {
 
+    private CountDownLatch countDownLatch = new CountDownLatch(1);
+    private Summary dataEvent;
     private KafkaTemplate kafkaTemplate;
     private KafkaRequestProducer kafkaRequestProducer;
 
@@ -23,7 +22,16 @@ public class CountryService {
         this.kafkaRequestProducer = kafkaRequestProducer;
     }
 
-    public void getCountryValues(String countryName) {
+    public Summary getCountryValues(String countryName) throws InterruptedException {
         kafkaRequestProducer.sendMessage(String.format("get country values of %s", countryName), "request");
+        //on attend que l'event soit déclenché dans le consumer
+        countDownLatch.await();
+        return this.dataEvent;
+    }
+
+    @EventListener
+    public void handleSummaryConsumerEvent(SummaryConsumerEvent summaryConsumerEvent){
+        this.dataEvent = summaryConsumerEvent.getSummary();
+        this.countDownLatch.countDown();
     }
 }
