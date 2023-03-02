@@ -29,7 +29,7 @@ public class KafkaResponseListener {
             groupId = "api",
             containerFactory = "responseKafkaListenerFactory"
     )
-    public Summary listener(Summary summary){
+    public void listener(Summary summary){
         logger.info("[Kafka Listener] a message was received from KafKa response Topic");
         System.out.println("message received");
     }
