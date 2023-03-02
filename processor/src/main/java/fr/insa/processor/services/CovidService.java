@@ -1,18 +1,18 @@
 package fr.insa.processor.services;
 
-import fr.insa.processor.repositories.CovidRepository;
-import fr.insa.processor.utils.Commands;
+import fr.insa.processor.repositories.GlobalRepository;
+import fr.insa.processor.models.Commands;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CovidService {
-    private CovidRepository covidRepository;
+    private GlobalRepository covidRepository;
 
     public CovidService() {
         super();
     }
 
-    public CovidService(CovidRepository covidRepository) {
+    public CovidService(GlobalRepository covidRepository) {
         this.covidRepository = covidRepository;
     }
 

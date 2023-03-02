@@ -2,7 +2,6 @@ package fr.insa.api.services;
 
 import fr.insa.api.models.CountryStatistics;
 import fr.insa.api.repositories.CovidRepository;
-import fr.insa.api.utils.Commands;
 import org.springframework.stereotype.Service;
 
 @Service

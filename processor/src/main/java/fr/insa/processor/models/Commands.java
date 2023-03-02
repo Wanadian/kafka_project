@@ -1,4 +1,4 @@
-package fr.insa.processor.utils;
+package fr.insa.processor.models;
 
 public class Commands {
     public Commands(){
