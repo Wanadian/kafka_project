@@ -1,4 +1,4 @@
-package fr.insa.processor.configs;
+package fr.insa.api.configs;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -24,12 +24,12 @@ public class KafkaTopicConfig {
     }
 
     @Bean
-    public NewTopic responseTopic() {
-        return new NewTopic("response", 1, (short) 1);
+    public NewTopic requestTopic() {
+        return new NewTopic("request", 1, (short) 1);
     }
 
     @Bean
-    public NewTopic requestTopic() {
-        return new NewTopic("request", 1, (short) 1);
+    public NewTopic responseTopic() {
+        return new NewTopic("response", 1, (short) 1);
     }
 }

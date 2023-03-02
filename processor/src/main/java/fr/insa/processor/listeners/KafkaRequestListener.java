@@ -30,7 +30,7 @@ public class KafkaRequestListener {
     public void listener(Summary summary){
         logger.info("[Kafka Listener] a message was received from KafKa request Topic");
         System.out.println("message received");
-        //summary.setGlobal(globalRepository.findFirstByOrderByDateAsc());
+        summary.setGlobal(globalRepository.findFirstByOrderByDateDesc());
         summary.setCountries(countryRepository.findAll());
         kafkaResponseProducer.sendMessage(summary, "response");
     }
