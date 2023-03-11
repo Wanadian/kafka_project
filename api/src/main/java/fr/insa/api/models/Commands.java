@@ -6,6 +6,6 @@ public class Commands {
     }
 
     public String getCommands(){
-        return new String("Commands :");
+        return "Commands :\n-global/export\n-global\n-countries/{countryName}\n-countries/lethality\n-countries/deaths-avg\n-countries/confirmed_avg";
     }
 }

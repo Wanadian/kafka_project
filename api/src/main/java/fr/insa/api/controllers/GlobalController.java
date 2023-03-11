@@ -1,5 +1,7 @@
 package fr.insa.api.controllers;
 
+import fr.insa.api.models.Global;
+import fr.insa.api.models.Summary;
 import fr.insa.api.services.GlobalService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -12,10 +14,6 @@ public class GlobalController {
 
     private GlobalService globalService;
 
-    public GlobalController() {
-        super();
-    }
-
     public GlobalController(GlobalService globalService) {
         this.globalService = globalService;
     }
@@ -23,28 +21,12 @@ public class GlobalController {
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
-    public long getGlobalValues() {
-        return 0/*globalService.getGlobalValues()*/;
+    public Global getGlobalValues() throws InterruptedException {
+        return globalService.getGlobalValues();
     }
 
-    @GetMapping(value = "/confirmed", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    @ResponseStatus(value = HttpStatus.OK)
-    public long getConfirmedAverage() {
-        return 0/*;globalService.getGlobalAverageConfirmed()*/;
-    }
-
-    @GetMapping(value = "/dead", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    @ResponseStatus(value = HttpStatus.OK)
-    public long getDeathsAverage() {
-        return 0/*globalService.getGlobalAverageDead()*/;
-    }
-
-    @GetMapping(value = "/lethality", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    @ResponseStatus(value = HttpStatus.OK)
-    public long getCountriesDeathsPercent() {
-        return 0/*globalService.getGlobalLethality()*/;
+    @GetMapping(value = "/export", produces = MediaType.APPLICATION_XML_VALUE)
+    public Summary xmlExport() throws InterruptedException {
+        return globalService.xmlExport();
     }
 }

@@ -1,7 +1,0 @@
-/Users/william/development/intergiciel/kafka_project/api/src/main/java/fr/insa/api/ApiApplication.java
-/Users/william/development/intergiciel/kafka_project/api/src/main/java/fr/insa/api/services/IntegrationService.java
-/Users/william/development/intergiciel/kafka_project/api/src/main/java/fr/insa/api/services/CovidService.java
-/Users/william/development/intergiciel/kafka_project/api/src/main/java/fr/insa/api/utils/Commands.java
-/Users/william/development/intergiciel/kafka_project/api/src/main/java/fr/insa/api/controllers/CovidController.java
-/Users/william/development/intergiciel/kafka_project/api/src/main/java/fr/insa/api/repositories/CovidRepository.java
-/Users/william/development/intergiciel/kafka_project/api/src/main/java/fr/insa/api/models/CountryStatistics.java

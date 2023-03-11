@@ -1,37 +1,43 @@
 package fr.insa.api.services;
 
 import fr.insa.api.events.SummaryConsumerEvent;
+import fr.insa.api.models.Country;
 import fr.insa.api.models.Summary;
 import fr.insa.api.producers.KafkaRequestProducer;
 import org.springframework.context.event.EventListener;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 import java.util.concurrent.CountDownLatch;
 
 @Service
 public class CountryService {
 
-    private CountDownLatch countDownLatch = new CountDownLatch(1);
-    private Summary dataEvent;
-    private KafkaTemplate kafkaTemplate;
-    private KafkaRequestProducer kafkaRequestProducer;
+    private KafkaService kafkaService;
 
-    public CountryService(KafkaTemplate kafkaTemplate, KafkaRequestProducer kafkaRequestProducer) {
-        this.kafkaTemplate = kafkaTemplate;
-        this.kafkaRequestProducer = kafkaRequestProducer;
+    public CountryService(KafkaService kafkaService) {
+        this.kafkaService = kafkaService;
     }
 
-    public Summary getCountryValues(String countryName) throws InterruptedException {
-        kafkaRequestProducer.sendMessage(String.format("get country values of %s", countryName), "request");
-        //on attend que l'event soit déclenché dans le consumer
-        countDownLatch.await();
-        return this.dataEvent;
+    public Country getCountryValues(String countryName) throws InterruptedException {
+        Summary summary = kafkaService.requestData();
+        return summary.getCountries().stream().filter(country -> country.getCountry().equals(countryName)).findFirst().orElseThrow(RuntimeException::new);
     }
 
-    @EventListener
-    public void handleSummaryConsumerEvent(SummaryConsumerEvent summaryConsumerEvent){
-        this.dataEvent = summaryConsumerEvent.getSummary();
-        this.countDownLatch.countDown();
+    public double getConfirmedAverage() throws InterruptedException {
+        Summary summary = kafkaService.requestData();
+        return summary.getCountries().stream().mapToDouble(Country::getTotalConfirmed).average().orElse(0);
+    }
+
+    public double getGlobalAverageDead() throws InterruptedException {
+        Summary summary = kafkaService.requestData();
+        return summary.getCountries().stream().mapToDouble(Country::getTotalDeaths).average().orElse(0);
+    }
+
+    public double getGlobalLethality() throws InterruptedException {
+        Summary summary = kafkaService.requestData();
+        double confirmed = summary.getCountries().stream().mapToDouble(Country::getTotalConfirmed).sum();
+        double deaths = summary.getCountries().stream().mapToDouble(Country::getTotalDeaths).sum();
+        return (deaths/confirmed)*100;
     }
 }

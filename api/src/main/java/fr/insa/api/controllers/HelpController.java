@@ -13,7 +13,7 @@ public class HelpController {
         super();
     }
 
-    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/")
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
     public String getHelp() {

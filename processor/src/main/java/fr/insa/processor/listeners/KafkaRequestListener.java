@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 public class KafkaRequestListener {
     private GlobalRepository globalRepository;
@@ -29,8 +31,9 @@ public class KafkaRequestListener {
     )
     public void listener(String message){
         logger.info("[Kafka Listener] a message was received from KafKa request Topic");
-        System.out.println("message received");
         Summary summary = new Summary();
+        summary.setId(""+System.currentTimeMillis());
+        summary.setDate(new Date());
         summary.setGlobal(globalRepository.findFirstByOrderByDateDesc());
         summary.setCountries(countryRepository.findAll());
         kafkaResponseProducer.sendMessage(summary, "response");
