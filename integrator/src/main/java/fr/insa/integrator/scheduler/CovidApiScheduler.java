@@ -22,7 +22,10 @@ public class CovidApiScheduler {
         this.kafkaIntegrationProducer = kafkaIntegrationProducer;
     }
 
-    @Scheduled(fixedDelay = 30000, initialDelay = 5000)
+    /**
+     * We set up a scheduler every 30min and begin 5 sec after app lunch
+     */
+    @Scheduled(fixedDelay = 1800000, initialDelay = 5000)
     public void scheduleApiCall() {
         SummaryDto summaryDto = client.getSummary();
         if (summaryDto.message().equals("Caching in progress")){
