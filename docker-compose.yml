@@ -96,4 +96,4 @@ services:
       - "5432:5432"
 
 volumes:
-    postgres_tp_kafka:
+  postgres_tp_kafka:
