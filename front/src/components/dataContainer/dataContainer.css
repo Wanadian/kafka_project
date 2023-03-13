@@ -1,0 +1,9 @@
+.container{
+    display: flex;
+    height: 150rem;
+    width: 200rem;
+}
+
+.title{
+    color: red;
+}
