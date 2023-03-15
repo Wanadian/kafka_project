@@ -1,0 +1,17 @@
+.information-dashboard{
+    display: block;
+}
+
+.container{
+    height: 150rem;
+    width: 200rem;
+    margin-bottom: 100rem;
+}
+
+.title{
+    color: red;
+}
+
+.selector{
+    display: inline-flex;
+}
