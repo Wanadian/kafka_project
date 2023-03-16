@@ -1,0 +1,24 @@
+.new-feature{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    -webkit-animation-name: colorChanges;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 5s;
+}
+
+@-webkit-keyframes colorChanges {
+    0% { color: #d300d3; }
+    14% { color: #a000ff; }
+    15% { color: #a000ff; }
+    29% { color: #33d6ec; }
+    30% { color: #33d6ec; }
+    44% { color: #099409; }
+    45% { color: #099409; }
+    59% { color: #f8d50e; }
+    60% { color: #f8d50e; }
+    74% { color: #f18305; }
+    75% { color: #f18305; }
+    89% { color: #f82222; }
+    100% { color: #d300d3; }
+}

@@ -1,4 +1,4 @@
-import './App.css'
+import './home.css'
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
@@ -24,7 +24,7 @@ type CountryType = {
     date: number;
 }
 
-function App() {
+function Home() {
     const [globalValue, setGlobalValue] = useState<GlobalType>({id: "id", newConfirmed: 0, totalConfirmed: 0, newDeaths: 0, totalDeaths: 0, newRecovered: 0, totalRecovered: 0, date: 0});
     const [countryValue, setCountryValue] = useState<CountryType>({id: "id", newConfirmed: 0, totalConfirmed: 0, newDeaths: 0, totalDeaths: 0, newRecovered: 0, totalRecovered: 0, date: 0});
     const [country, setCountry] = useState("Canada");
@@ -87,12 +87,12 @@ function App() {
       <div className="information-dashboard">
           <span className="container">
             <div className="title">Global values</div>
-              <div>new confirmed : {globalValue.newConfirmed}</div>
-              <div>total confirmed : {globalValue.totalConfirmed}</div>
-              <div>new deaths : {globalValue.newDeaths}</div>
-              <div>total deaths : {globalValue.totalDeaths}</div>
-              <div>new recovered : {globalValue.newRecovered}</div>
-              <div>total recovered : {globalValue.totalRecovered}</div>
+              <div>New confirmed : {globalValue.newConfirmed} person(s)</div>
+              <div>Total confirmed : {globalValue.totalConfirmed} person(s)</div>
+              <div>New deaths : {globalValue.newDeaths} person(s)</div>
+              <div>Total deaths : {globalValue.totalDeaths} person(s)</div>
+              <div>New recovered : {globalValue.newRecovered} person(s)</div>
+              <div>Total recovered : {globalValue.totalRecovered} person(s)</div>
           </span>
           <span className="container">
               <form>
@@ -101,28 +101,28 @@ function App() {
                       <option value="Canada">Canada</option>
                       <option value="France">France</option>
                   </select>
-                  <div>new confirmed : {countryValue.newConfirmed}</div>
-                  <div>total confirmed : {countryValue.totalConfirmed}</div>
-                  <div>new deaths : {countryValue.newDeaths}</div>
-                  <div>total deaths : {countryValue.totalDeaths}</div>
-                  <div>new recovered : {countryValue.newRecovered}</div>
-                  <div>total recovered : {countryValue.totalRecovered}</div>
+                  <div>New confirmed : {countryValue.newConfirmed} person(s)</div>
+                  <div>Total confirmed : {countryValue.totalConfirmed} person(s)</div>
+                  <div>New deaths : {countryValue.newDeaths} person(s)</div>
+                  <div>Total deaths : {countryValue.totalDeaths} person(s)</div>
+                  <div>New recovered : {countryValue.newRecovered} person(s)</div>
+                  <div>Total recovered : {countryValue.totalRecovered} person(s)</div>
               </form>
           </span>
           <span className="container">
             <div className="title">Confirmed average value</div>
-            <div>{confirmedAverageValue}</div>
+            <div>{confirmedAverageValue} person(s)</div>
           </span>
           <span className="container">
             <div className="title">Death average value</div>
-            <div>{deathAverageValue}</div>
+            <div>{deathAverageValue} person(s)</div>
           </span>
           <span className="container">
             <div className="title">Lethality value</div>
-            <div>{lethalityValue}</div>
+            <div>{lethalityValue} %</div>
           </span>
       </div>
   )
 }
 
-export default App
+export default Home
