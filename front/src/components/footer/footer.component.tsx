@@ -35,7 +35,6 @@ export function FooterComponent() {
     return (
         <div className={classes.footer}>
             <Container className={classes.inner}>
-                <MantineLogo size={28} />
                 <Group spacing={0} className={classes.links} position="right" noWrap>
                     <ActionIcon size="lg">
                         <IconBrandTwitter size="1.05rem" stroke={1.5} />

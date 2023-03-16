@@ -89,9 +89,6 @@ export function HeaderComponent({links}: HeaderComponentProps) {
                 <Group className={classes.links} spacing={5}>
                     {items}
                 </Group>
-
-                <MantineLogo size={28}/>
-
                 <Group spacing={0} className={classes.social} position="right" noWrap>
                     <ActionIcon size="lg">
                         <IconBrandTwitter size="1.1rem" stroke={1.5}/>
