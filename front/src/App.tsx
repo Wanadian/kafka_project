@@ -1,7 +1,6 @@
 import './App.css'
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {Simulate} from "react-dom/test-utils";
 
 type GlobalType = {
     id: string;
@@ -28,6 +27,7 @@ type CountryType = {
 function App() {
     const [globalValue, setGlobalValue] = useState<GlobalType>({id: "id", newConfirmed: 0, totalConfirmed: 0, newDeaths: 0, totalDeaths: 0, newRecovered: 0, totalRecovered: 0, date: 0});
     const [countryValue, setCountryValue] = useState<CountryType>({id: "id", newConfirmed: 0, totalConfirmed: 0, newDeaths: 0, totalDeaths: 0, newRecovered: 0, totalRecovered: 0, date: 0});
+    const [country, setCountry] = useState("canada");
     const [confirmedAverageValue, setConfirmedAverageValue] = useState(undefined);
     const [deathAverageValue, setDeathAverageValue] = useState(undefined);
     const [lethalityValue, setLethalityValue] = useState(undefined);
@@ -41,15 +41,15 @@ function App() {
                 console.log(error)
         });
     }, [])
-    function getCountryValues (countryName : string) {
-        axios.get("http://localhost:8078/countries/" + countryName)
+    useEffect(() => {
+        axios.get("http://localhost:8078/countries/" + country)
             .then((response) => {
             setCountryValue(response.data);
         })
             .catch((error) =>{
                 console.log(error)
             });
-    }
+    }, [country])
     useEffect( () => {
         axios.get("http://localhost:8078/countries/confirmed_avg")
             .then((response) => {
@@ -78,6 +78,10 @@ function App() {
             });
     }, [])
 
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setCountry(e.target.value);
+    }
+
 
   return (
       <div className="information-dashboard">
@@ -92,18 +96,17 @@ function App() {
           </span>
           <span className="container">
               <form>
-                  <select name="Country" id="country" className="selector">
+                  <h1 className="title">Country Values</h1>
+                  <select name="Country" id="country" value={country} onChange={handleChange} className="selector">
                       <option value="canada">Canada</option>
                       <option value="france">France</option>
                   </select>
-                  <h1 className="title">Values</h1>
                   <div>new confirmed : {countryValue.newConfirmed}</div>
                   <div>total confirmed : {countryValue.totalConfirmed}</div>
                   <div>new deaths : {countryValue.newDeaths}</div>
                   <div>total deaths : {countryValue.totalDeaths}</div>
                   <div>new recovered : {countryValue.newRecovered}</div>
                   <div>total recovered : {countryValue.totalRecovered}</div>
-                  <button type="submit">Get values</button>
               </form>
           </span>
           <span className="container">
