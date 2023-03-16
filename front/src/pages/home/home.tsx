@@ -95,20 +95,18 @@ function Home() {
               <div>Total recovered : {globalValue.totalRecovered} person(s)</div>
           </span>
           <span className="container">
-              <form>
-                  <div className="title">Country Values</div>
-                  <select name="Country" id="country" value={country} onChange={handleChange} className="selector">
-                      <option value="Canada">Canada</option>
-                      <option value="France">France</option>
-                  </select>
-                  <div>New confirmed : {countryValue.newConfirmed} person(s)</div>
-                  <div>Total confirmed : {countryValue.totalConfirmed} person(s)</div>
-                  <div>New deaths : {countryValue.newDeaths} person(s)</div>
-                  <div>Total deaths : {countryValue.totalDeaths} person(s)</div>
-                  <div>New recovered : {countryValue.newRecovered} person(s)</div>
-                  <div>Total recovered : {countryValue.totalRecovered} person(s)</div>
-              </form>
-          </span>
+              <div className="title">Country Values</div>
+              <select name="Country" id="country" value={country} onChange={handleChange} className="selector">
+                  <option value="Canada">Canada</option>
+                  <option value="France">France</option>
+              </select>
+              <div>New confirmed : {countryValue.newConfirmed} person(s)</div>
+              <div>Total confirmed : {countryValue.totalConfirmed} person(s)</div>
+              <div>New deaths : {countryValue.newDeaths} person(s)</div>
+              <div>Total deaths : {countryValue.totalDeaths} person(s)</div>
+              <div>New recovered : {countryValue.newRecovered} person(s)</div>
+              <div>Total recovered : {countryValue.totalRecovered} person(s)</div>
+         </span>
           <span className="container">
             <div className="title">Confirmed average value</div>
             <div>{confirmedAverageValue} person(s)</div>
