@@ -1,0 +1,12 @@
+fr/insa/processor/models/Commands.class
+fr/insa/processor/configs/KafkaConsumerConfig.class
+fr/insa/processor/producers/KafkaResponseProducer.class
+fr/insa/processor/repositories/CountryRepository.class
+fr/insa/processor/configs/KafkaProducerConfig.class
+fr/insa/processor/repositories/GlobalRepository.class
+fr/insa/processor/models/Country.class
+fr/insa/processor/listeners/KafkaRequestListener.class
+fr/insa/processor/models/Global.class
+fr/insa/processor/models/Summary.class
+fr/insa/processor/ProcessorApplication.class
+fr/insa/processor/configs/KafkaTopicConfig.class

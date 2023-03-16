@@ -1,0 +1,12 @@
+/Users/william/development/intergiciel/kafka_project/processor/src/main/java/fr/insa/processor/ProcessorApplication.java
+/Users/william/development/intergiciel/kafka_project/processor/src/main/java/fr/insa/processor/configs/KafkaConsumerConfig.java
+/Users/william/development/intergiciel/kafka_project/processor/src/main/java/fr/insa/processor/listeners/KafkaRequestListener.java
+/Users/william/development/intergiciel/kafka_project/processor/src/main/java/fr/insa/processor/producers/KafkaResponseProducer.java
+/Users/william/development/intergiciel/kafka_project/processor/src/main/java/fr/insa/processor/models/Commands.java
+/Users/william/development/intergiciel/kafka_project/processor/src/main/java/fr/insa/processor/configs/KafkaTopicConfig.java
+/Users/william/development/intergiciel/kafka_project/processor/src/main/java/fr/insa/processor/repositories/GlobalRepository.java
+/Users/william/development/intergiciel/kafka_project/processor/src/main/java/fr/insa/processor/repositories/CountryRepository.java
+/Users/william/development/intergiciel/kafka_project/processor/src/main/java/fr/insa/processor/models/Global.java
+/Users/william/development/intergiciel/kafka_project/processor/src/main/java/fr/insa/processor/models/Country.java
+/Users/william/development/intergiciel/kafka_project/processor/src/main/java/fr/insa/processor/models/Summary.java
+/Users/william/development/intergiciel/kafka_project/processor/src/main/java/fr/insa/processor/configs/KafkaProducerConfig.java

@@ -18,7 +18,7 @@ public class GlobalController {
         this.globalService = globalService;
     }
 
-    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
     public Global getGlobalValues() throws InterruptedException {
