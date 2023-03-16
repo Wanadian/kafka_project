@@ -1,11 +1,9 @@
 .information-dashboard{
-    display: block;
 }
 
 .container{
-    height: 150rem;
-    width: 200rem;
-    margin-bottom: 100rem;
+    display: block;
+    margin-bottom: 7rem;
 }
 
 .title{
