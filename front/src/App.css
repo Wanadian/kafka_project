@@ -1,14 +1,21 @@
 .information-dashboard{
+    display: grid;
 }
 
 .container{
     display: block;
-    margin-bottom: 7rem;
+    width: auto;
+    margin-bottom: 2rem;
     margin-left: 1rem;
+    padding: 0.6rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
 }
 
 .title{
+    font-weight: bold;
+    font-size: 30px;
     color: red;
+    margin-bottom: 0.6rem;
 }
 
 .selector{

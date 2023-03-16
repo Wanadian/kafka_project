@@ -27,7 +27,7 @@ type CountryType = {
 function App() {
     const [globalValue, setGlobalValue] = useState<GlobalType>({id: "id", newConfirmed: 0, totalConfirmed: 0, newDeaths: 0, totalDeaths: 0, newRecovered: 0, totalRecovered: 0, date: 0});
     const [countryValue, setCountryValue] = useState<CountryType>({id: "id", newConfirmed: 0, totalConfirmed: 0, newDeaths: 0, totalDeaths: 0, newRecovered: 0, totalRecovered: 0, date: 0});
-    const [country, setCountry] = useState("canada");
+    const [country, setCountry] = useState("Canada");
     const [confirmedAverageValue, setConfirmedAverageValue] = useState(undefined);
     const [deathAverageValue, setDeathAverageValue] = useState(undefined);
     const [lethalityValue, setLethalityValue] = useState(undefined);
@@ -86,7 +86,7 @@ function App() {
   return (
       <div className="information-dashboard">
           <span className="container">
-            <h1 className="title">Global values</h1>
+            <div className="title">Global values</div>
               <div>new confirmed : {globalValue.newConfirmed}</div>
               <div>total confirmed : {globalValue.totalConfirmed}</div>
               <div>new deaths : {globalValue.newDeaths}</div>
@@ -96,10 +96,10 @@ function App() {
           </span>
           <span className="container">
               <form>
-                  <h1 className="title">Country Values</h1>
+                  <div className="title">Country Values</div>
                   <select name="Country" id="country" value={country} onChange={handleChange} className="selector">
-                      <option value="canada">Canada</option>
-                      <option value="france">France</option>
+                      <option value="Canada">Canada</option>
+                      <option value="France">France</option>
                   </select>
                   <div>new confirmed : {countryValue.newConfirmed}</div>
                   <div>total confirmed : {countryValue.totalConfirmed}</div>
@@ -110,15 +110,15 @@ function App() {
               </form>
           </span>
           <span className="container">
-            <h1 className="title">Confirmed average value</h1>
+            <div className="title">Confirmed average value</div>
             <div>{confirmedAverageValue}</div>
           </span>
           <span className="container">
-            <h1 className="title">Death average value</h1>
+            <div className="title">Death average value</div>
             <div>{deathAverageValue}</div>
           </span>
           <span className="container">
-            <h1 className="title">Lethality value</h1>
+            <div className="title">Lethality value</div>
             <div>{lethalityValue}</div>
           </span>
       </div>

@@ -11,5 +11,3 @@ L'équipe réalisant ce projet est constitué de :
 # Lancement du projet
 
 # Paramètrage de votre Service Kafka
-
-# Commande SQL CREATE de la base et table d’ingestion des données
