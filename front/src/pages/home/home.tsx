@@ -1,6 +1,7 @@
 import './home.css'
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 type GlobalType = {
     id: string;
@@ -32,6 +33,7 @@ function Home() {
     const [confirmedAverageValue, setConfirmedAverageValue] = useState(undefined);
     const [deathAverageValue, setDeathAverageValue] = useState(undefined);
     const [lethalityValue, setLethalityValue] = useState(undefined);
+    const navigate = useNavigate();
 
     useEffect( () => {
         axios.get("http://localhost:8078/countries")
@@ -92,8 +94,8 @@ function Home() {
         setCountry(e.target.value);
     }
 
-    const handleClick = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        window.location.href='http://localhost:5173/team';
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        navigate("/team")
     }
 
     console.log(countries)

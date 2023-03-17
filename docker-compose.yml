@@ -9,6 +9,8 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - kafka-project-network
 
   broker:
     image: confluentinc/cp-kafka:5.5.1
@@ -24,12 +26,15 @@ services:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://broker:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
       KAFKA_JMX_PORT: 9101
+    networks:
+      - kafka-project-network
 
   schema-registry:
     image: confluentinc/cp-schema-registry:5.5.1
@@ -43,6 +48,8 @@ services:
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
+    networks:
+      - kafka-project-network
 
   control-center:
     image: confluentinc/cp-enterprise-control-center:5.5.1
@@ -66,6 +73,8 @@ services:
       CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
       CONFLUENT_METRICS_TOPIC_REPLICATION: 1
       PORT: 9021
+    networks:
+      - kafka-project-network
 
   rest-proxy:
     image: confluentinc/cp-kafka-rest:5.5.1
@@ -82,6 +91,8 @@ services:
       KAFKA_REST_BOOTSTRAP_SERVERS: 'broker:29092'
       KAFKA_REST_LISTENERS: "http://0.0.0.0:8082"
       KAFKA_REST_SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
+    networks:
+      - kafka-project-network
 
   postgres:
     container_name: postgres
@@ -94,6 +105,105 @@ services:
       - postgres_tp_kafka:/data/postgres
     ports:
       - "5432:5432"
+    networks:
+      - kafka-project-network
+
+  api:
+    build: ./api
+    links:
+      - broker
+    ports:
+      - "8078:8078"
+    depends_on:
+      - broker
+      - zookeeper
+      - schema-registry
+      - rest-proxy
+      - control-center
+    environment:
+      SPRING_SERVER_PORT: 8078
+      KAFKA_HOST: broker
+      KAFKA_URL: 9092
+    networks:
+      - kafka-project-network
+
+  processor:
+    build: ./processor
+    links:
+      - broker
+      - postgres
+    ports:
+      - "8090:8090"
+    depends_on:
+      - broker
+      - zookeeper
+      - schema-registry
+      - rest-proxy
+      - control-center
+      - postgres
+    environment:
+      SPRING_SERVER_PORT: 8090
+      KAFKA_HOST: broker
+      KAFKA_URL: 9092
+      POSTGRES_HOST: postgres
+    networks:
+      - kafka-project-network
+
+  injector:
+    build: ./injector
+    links:
+      - broker
+      - postgres
+    ports:
+      - "8079:8079"
+    depends_on:
+      - broker
+      - zookeeper
+      - schema-registry
+      - rest-proxy
+      - control-center
+      - postgres
+    environment:
+      SPRING_SERVER_PORT: 8079
+      KAFKA_HOST: broker
+      KAFKA_URL: 9092
+      POSTGRES_HOST: postgres
+    networks:
+      - kafka-project-network
+
+  integrator:
+    build: ./integrator
+    links:
+      - broker
+    ports:
+      - "8080:8080"
+    depends_on:
+      - broker
+      - zookeeper
+      - schema-registry
+      - rest-proxy
+      - control-center
+    environment:
+      SPRING_SERVER_PORT: 8080
+      KAFKA_HOST: broker
+      KAFKA_URL: 9092
+    networks:
+      - kafka-project-network
+
+  front:
+    build: ./front
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+    environment:
+      API_HOST: api
+    networks:
+      - kafka-project-network
 
 volumes:
   postgres_tp_kafka:
+
+networks:
+  kafka-project-network:
+    driver: bridge
