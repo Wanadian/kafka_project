@@ -1,14 +1,10 @@
 package fr.insa.api.services;
 
-import fr.insa.api.events.SummaryConsumerEvent;
 import fr.insa.api.models.Country;
 import fr.insa.api.models.Summary;
-import fr.insa.api.producers.KafkaRequestProducer;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
-import org.webjars.NotFoundException;
-
-import java.util.concurrent.CountDownLatch;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CountryService {
@@ -17,6 +13,11 @@ public class CountryService {
 
     public CountryService(KafkaService kafkaService) {
         this.kafkaService = kafkaService;
+    }
+
+    public List<String> getCountries() throws InterruptedException {
+        Summary summary = kafkaService.requestData();
+        return summary.getCountries().stream().map(Country::getCountry).collect(Collectors.toList());
     }
 
     public Country getCountryValues(String countryName) throws InterruptedException {

@@ -4,7 +4,7 @@
     font-size: 30px;
     -webkit-animation-name: colorChanges;
     -webkit-animation-iteration-count: infinite;
-    -webkit-animation-duration: 5s;
+    -webkit-animation-duration: 4s;
 }
 
 @-webkit-keyframes colorChanges {

@@ -25,13 +25,23 @@ type CountryType = {
 }
 
 function Home() {
+    const [country, setCountry] = useState("Canada");
+    const [countries, setCountries] = useState([]);
     const [globalValue, setGlobalValue] = useState<GlobalType>({id: "id", newConfirmed: 0, totalConfirmed: 0, newDeaths: 0, totalDeaths: 0, newRecovered: 0, totalRecovered: 0, date: 0});
     const [countryValue, setCountryValue] = useState<CountryType>({id: "id", newConfirmed: 0, totalConfirmed: 0, newDeaths: 0, totalDeaths: 0, newRecovered: 0, totalRecovered: 0, date: 0});
-    const [country, setCountry] = useState("Canada");
     const [confirmedAverageValue, setConfirmedAverageValue] = useState(undefined);
     const [deathAverageValue, setDeathAverageValue] = useState(undefined);
     const [lethalityValue, setLethalityValue] = useState(undefined);
 
+    useEffect( () => {
+        axios.get("http://localhost:8078/countries")
+            .then((response) => {
+                setCountries(response.data);
+            })
+            .catch((error) =>{
+                console.log(error)
+            });
+    }, [])
     useEffect( () => {
         axios.get("http://localhost:8078/global")
             .then((response) => {
@@ -82,6 +92,8 @@ function Home() {
         setCountry(e.target.value);
     }
 
+    console.log(countries)
+
 
   return (
       <div className="information-dashboard">
@@ -97,8 +109,10 @@ function Home() {
           <span className="container">
               <div className="title">Country Values</div>
               <select name="Country" id="country" value={country} onChange={handleChange} className="selector">
-                  <option value="Canada">Canada</option>
-                  <option value="France">France</option>
+                  {countries.map((countryName) =>(
+                      <option value={countryName}>{countryName}</option>
+                      ))
+                  }
               </select>
               <div>New confirmed : {countryValue.newConfirmed} person(s)</div>
               <div>Total confirmed : {countryValue.totalConfirmed} person(s)</div>
