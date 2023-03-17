@@ -126,15 +126,15 @@ function Home() {
               <div>Total recovered : {countryValue.totalRecovered} person(s)</div>
          </span>
           <span className="container">
-            <div className="title">Confirmed average value</div>
+            <div className="title">Confirmed on average</div>
             <div>{confirmedAverageValue} person(s)</div>
           </span>
           <span className="container">
-            <div className="title">Death average value</div>
+            <div className="title">Death on average</div>
             <div>{deathAverageValue} person(s)</div>
           </span>
           <span className="container">
-            <div className="title">Lethality value</div>
+            <div className="title">Lethality of the virus</div>
             <div>{lethalityValue} %</div>
           </span>
           <button onClick={handleClick}  className="team-button">See the team !</button>
