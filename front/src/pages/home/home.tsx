@@ -92,6 +92,10 @@ function Home() {
         setCountry(e.target.value);
     }
 
+    const handleClick = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        window.location.href='http://localhost:5173/team';
+    }
+
     console.log(countries)
 
 
@@ -133,6 +137,7 @@ function Home() {
             <div className="title">Lethality value</div>
             <div>{lethalityValue} %</div>
           </span>
+          <button onClick={handleClick}  className="team-button">See the team !</button>
       </div>
   )
 }

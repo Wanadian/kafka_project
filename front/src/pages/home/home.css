@@ -23,6 +23,38 @@
     margin-bottom: 0.6rem;
 }
 
+.team-button{
+    display: block;
+    position: fixed;
+    bottom: 7rem;
+    right: 2rem;
+    width: 9rem;
+    height: 3rem;
+    border-radius: 1rem;
+    color: white;
+    cursor: pointer;
+    border: none;
+    -webkit-animation-name: backgroundColorChanges;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 5s;
+}
+
 .selector{
 
+}
+
+@-webkit-keyframes backgroundColorChanges {
+    0% { background-color: #d300d3; }
+    14% { background-color: #a000ff; }
+    15% { background-color: #a000ff; }
+    29% { background-color: #33d6ec; }
+    30% { background-color: #33d6ec; }
+    44% { background-color: #099409; }
+    45% { background-color: #099409; }
+    59% { background-color: #f8d50e; }
+    60% { background-color: #f8d50e; }
+    74% { background-color: #f18305; }
+    75% { background-color: #f18305; }
+    89% { background-color: #f82222; }
+    100% { background-color: #d300d3; }
 }
