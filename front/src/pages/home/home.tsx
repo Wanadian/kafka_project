@@ -105,8 +105,8 @@ function Home() {
             <div className="title">Global values</div>
               <div>New confirmed : {globalValue.newConfirmed} person(s)</div>
               <div>Total confirmed : {globalValue.totalConfirmed} person(s)</div>
-              <div>New deaths : {globalValue.newDeaths} person(s)</div>
-              <div>Total deaths : {globalValue.totalDeaths} person(s)</div>
+              <div>New death(s) : {globalValue.newDeaths} person(s)</div>
+              <div>Total death(s) : {globalValue.totalDeaths} person(s)</div>
               <div>New recovered : {globalValue.newRecovered} person(s)</div>
               <div>Total recovered : {globalValue.totalRecovered} person(s)</div>
           </span>
@@ -120,8 +120,8 @@ function Home() {
               </select>
               <div>New confirmed : {countryValue.newConfirmed} person(s)</div>
               <div>Total confirmed : {countryValue.totalConfirmed} person(s)</div>
-              <div>New deaths : {countryValue.newDeaths} person(s)</div>
-              <div>Total deaths : {countryValue.totalDeaths} person(s)</div>
+              <div>New death(s) : {countryValue.newDeaths} person(s)</div>
+              <div>Total death(s) : {countryValue.totalDeaths} person(s)</div>
               <div>New recovered : {countryValue.newRecovered} person(s)</div>
               <div>Total recovered : {countryValue.totalRecovered} person(s)</div>
          </span>
